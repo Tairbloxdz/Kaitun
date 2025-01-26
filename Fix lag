@@ -11,7 +11,7 @@ ScreenGui.Name = "FullscreenWhiteFrame"
 ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 ScreenGui.IgnoreGuiInset = true -- Đặt IgnoreGuiInset thành true
 
-Frame.Name = "BlackFrame"
+Frame.Name = "WhiteFrame"
 Frame.Parent = ScreenGui
 Frame.BackgroundColor3 = Color3.new(1, 1, 1) -- Màu trắng
 Frame.Size = UDim2.new(1, 0, 1, 0) -- Toàn màn hình
