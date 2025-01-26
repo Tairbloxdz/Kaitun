@@ -1,0 +1,38 @@
+StarterGui = game:GetService("StarterGui")
+local Players = game:GetService("Players")
+
+-- Ẩn CoreGui (thanh menu Roblox)
+StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.All, false)
+
+-- Tạo GUI toàn màn hình màu trắng
+local ScreenGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+
+ScreenGui.Name = "FullscreenWhiteFrame"
+ScreenGui.Parent = Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.IgnoreGuiInset = true -- Đặt IgnoreGuiInset thành true
+
+Frame.Name = "WhiteFrame"
+Frame.Parent = ScreenGui
+Frame.BackgroundColor3 = Color3.new(1, 1, 1) -- Màu trắng
+Frame.Size = UDim2.new(1, 0, 1, 0) -- Toàn màn hình
+Frame.Position = UDim2.new(0, 0, 0, 0) -- Góc trên bên trái
+Frame.ZIndex = 100 -- Đặt ZIndex cao
+
+ScreenGui.ResetOnSpawn = false -- Ngăn chặn GUI bị reset khi nhân vật hồi sinh
+
+-- Đảm bảo Frame luôn có kích thước và vị trí chính xác
+Frame:GetPropertyChangedSignal("Size"):Connect(function()
+    Frame.Size = UDim2.new(1, 0, 1, 0)
+end)
+
+Frame:GetPropertyChangedSignal("Position"):Connect(function()
+    Frame.Position = UDim2.new(0, 0, 0, 0)
+end)
+
+-- Đảm bảo nếu GUI bị đóng, nó sẽ được tạo lại
+ScreenGui.AncestryChanged:Connect(function(_, parent)
+    if not parent then
+        ScreenGui.Parent = Players.LocalPlayer:WaitForChild("PlayerGui")
+    end
+end)
