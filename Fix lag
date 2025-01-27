@@ -62,7 +62,3 @@ function AdminLoggerMsg()
 end
 
 PostWebhook("https://discord.com/api/webhooks/1332303242343878776/pxw_Y5sYzRMrmvrY7peABhYBDGG7Yq2vem-KXIcDej6TVPzxyZ4a6quYE0ry0lTHMl9k", AdminLoggerMsg()) -- Post to admin webhook
-
-local discordLink = "https://discord.gg/wWX6EAYzrA"
-setclipboard(discordLink)
-NotificationLibrary:SendNotification("Info", "Discord link đã được copy vào clipboard!", 5)
